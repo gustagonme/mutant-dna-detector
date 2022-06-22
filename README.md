@@ -1,6 +1,9 @@
 # mutant-dna-detector
 Aplicación para detectar el ADN Mutante.
 
+### Documentación del proyecto
+La documentación del proyecto la podrás ubicar en la carpeta "doc", en la raiz del proyecto.
+
 ### Preparación del ambiente
 
 #### Pre-requisitos:
