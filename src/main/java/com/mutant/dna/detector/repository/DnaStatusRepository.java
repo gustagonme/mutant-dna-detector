@@ -10,7 +10,7 @@ import java.util.List;
 public interface DnaStatusRepository extends CrudRepository<DnaStatus, Long> {
 
     @Query(value = "select m.*, h.*, trunc((cast (m.mutants as decimal)/h.humans),2) as ratio " +
-            "from (select count(is_mutant) as mutants from dna_samples where is_mutant = true) m, " +
-            "(select count(is_mutant) as humans from dna_samples where is_mutant = false) h", nativeQuery=true)
+            "from (select count(ismutant) as mutants from dna_samples where ismutant = true) m, " +
+            "(select count(ismutant) as humans from dna_samples where ismutant = false) h", nativeQuery=true)
     List<DnaStatus> dnaStatus();
 }
