@@ -7,6 +7,13 @@ public class DnaValidationRequest {
 
     private List<String> dna;
 
+    public DnaValidationRequest(List<String> dna) {
+        this.dna = dna;
+    }
+
+    public DnaValidationRequest() {
+    }
+
     public List<String> getDna() {
         return dna;
     }

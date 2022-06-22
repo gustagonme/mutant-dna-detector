@@ -17,9 +17,35 @@ dependencies {
 	implementation('org.postgresql:postgresql')
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.projectlombok:lombok:1.18.20'
+	implementation 'org.mockito:mockito-core:4.6.1'
+	implementation 'junit:junit:4.13.2'
+	implementation 'org.jacoco:org.jacoco.build:0.8.8'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
 }
+
+apply plugin: 'jacoco'
+
+jacoco {
+	toolVersion = '0.8.8'
+}
+
+jacocoTestReport {
+	reports {
+		csv.enabled = false
+		xml.enabled = false
+		html.enabled = true
+	}
+	afterEvaluate { // (optional) : to exclude classes / packages from coverage
+		classDirectories.from = files(classDirectories.files.collect {
+			fileTree(
+					dir: it,
+					exclude: [ 'com/mutant/dna/detector/model/**', 'com/mutant/dna/detector/dmain/**' ])
+		})
+	}
+}
+
+build.dependsOn jacocoTestReport
