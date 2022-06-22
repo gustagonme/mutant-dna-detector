@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:13.1
+    restart: always
+    environment:
+      - POSTGRES_USER=wandapietro
+      - POSTGRES_PASSWORD=onslaught1234
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d/
+    ports:
+      - 5438:5432
