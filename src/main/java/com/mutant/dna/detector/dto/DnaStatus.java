@@ -25,6 +25,12 @@ public class DnaStatus {
     public DnaStatus() {
     }
 
+    public DnaStatus(int mutants, int humans, double ratio) {
+        this.mutants = mutants;
+        this.humans = humans;
+        this.ratio = ratio;
+    }
+
     public int getMutants() {
         return mutants;
     }
