@@ -44,9 +44,10 @@ public class MutantDnaService {
     public MutantDnaException isMutant (List<String> dna){
         String [] dnaSample = formatDnaSample(dna);
         boolean isMutant = DnaMatchSequence(getCheckDna(dnaSample));
-        dnaSamplesRepository.save(new DnaSamples(String.join(",", dnaSample), isMutant));
         boolean validDna = validateNitrogenBase(dnaSample);
         if(validDna){
+            System.out.println(isMutant);
+            dnaSamplesRepository.save(new DnaSamples(String.join(",", dnaSample), isMutant));
             return isMutant ? new MutantDnaException(HttpStatus.OK, "Hemos encontrado un mutante") : new MutantDnaException(HttpStatus.FORBIDDEN, "El sujeto de pruebas es humano");
         }else{
             return new MutantDnaException(HttpStatus.UNAUTHORIZED, "La base nitrogenada no es la correcta, por favor revísela e intentalo de nuevo");

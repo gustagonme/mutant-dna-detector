@@ -11,7 +11,7 @@ public class DnaSamples {
     private long idDna;
     @Column(name = "dna")
     private String dna;
-    @Column(name = "isMutant")
+    @Column(name = "ismutant")
     private boolean isMutant;
 
     public DnaSamples() {
@@ -24,7 +24,7 @@ public class DnaSamples {
 
     @Override
     public String toString() {
-        return String.format("dna_samples[dna='%s', isMutant='%b']", dna, isMutant);
+        return String.format("dna_samples[dna='%s', is_mutant='%b']", dna, isMutant);
     }
 
     public String getDna() {
