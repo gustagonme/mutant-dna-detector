@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.mutant.dna.detector'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -26,26 +26,3 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
-
-apply plugin: 'jacoco'
-
-jacoco {
-	toolVersion = '0.8.8'
-}
-
-jacocoTestReport {
-	reports {
-		csv.enabled = false
-		xml.enabled = false
-		html.enabled = true
-	}
-	afterEvaluate { // (optional) : to exclude classes / packages from coverage
-		classDirectories.from = files(classDirectories.files.collect {
-			fileTree(
-					dir: it,
-					exclude: [ 'com/mutant/dna/detector/model/**', 'com/mutant/dna/detector/dmain/**' ])
-		})
-	}
-}
-
-build.dependsOn jacocoTestReport
