@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MutantController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mutantdetector</a> &gt; <a href="index.source.html" class="el_package">com.mutant.dna.detector.controller</a> &gt; <span class="el_source">MutantController.java</span></div><h1>MutantController.java</h1><pre class="source lang-java linenums">package com.mutant.dna.detector.controller;
+
+import com.mutant.dna.detector.domain.DnaValidationRequest;
+import com.mutant.dna.detector.dto.DnaStatus;
+import com.mutant.dna.detector.exception.MutantDnaException;
+import com.mutant.dna.detector.service.DnaStatusService;
+import com.mutant.dna.detector.service.MutantDnaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/mutant&quot;)
+<span class="fc" id="L17">public class MutantController {</span>
+
+    @Autowired
+    MutantDnaService mutantDnaService;
+    @Autowired
+    DnaStatusService dnaStatusService;
+
+        @PostMapping (&quot;/&quot;)
+        public ResponseEntity&lt;Object&gt; isMutant(@RequestBody DnaValidationRequest dna){
+<span class="nc" id="L26">            return buildResponseEntity(mutantDnaService.isMutant(dna.getDna()));</span>
+        }
+
+    @GetMapping(&quot;/status&quot;)
+    public List&lt;DnaStatus&gt; Status(){
+<span class="nc" id="L31">        return dnaStatusService.Status();</span>
+    }
+
+    private ResponseEntity&lt;Object&gt; buildResponseEntity(MutantDnaException mutantDnaException) {
+<span class="nc" id="L35">        return new ResponseEntity&lt;&gt;(mutantDnaException, mutantDnaException.getStatus());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
